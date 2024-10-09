@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { InfoComponent } from './pages/info/info.component';
-import { FavoritesComponent } from './pages/favorites/favorites.component';
-import { ImprintComponent } from './pages/info/imprint/imprint.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { InfoComponent } from './components/pages/info/info.component';
+import { FavoritesComponent } from './components/pages/favorites/favorites.component';
+import { ImprintComponent } from './components/pages/info/imprint/imprint.component';
 
 export const routes: Routes = [
   {

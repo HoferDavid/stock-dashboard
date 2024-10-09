@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SidenavService } from '../../services/sidenav.service';
+import { SidenavService } from '../../../services/sidenav.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 export type MenuItem = {
