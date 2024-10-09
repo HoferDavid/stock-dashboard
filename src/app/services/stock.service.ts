@@ -20,7 +20,7 @@ export class StockService {
       return this.cache.get(ticker);
     }
 
-    const url = `https://sheetdb.io/api/v1/h7ts77nvypgw8=${ticker}`;
+    const url = `https://sheetdb.io/api/v1/h7ts77nvypgw8?sheet=$${ticker}`;
     return this.http.get(url).pipe(
       tap(data => {
         console.log('data from server: ', data);
