@@ -25,25 +25,11 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'imprint',
+    component: ImprintComponent,
+  },
+  {
     path: 'favorites',
     component: FavoritesComponent,
   },
-  //   {
-  //     path: 'content',
-  //     component: ContentComponent,
-  //     children: [
-  //       {
-  //         path: 'playlists',
-  //         component: PlaylistsComponent,
-  //       },
-  //       {
-  //         path: 'posts',
-  //         component: PostsComponent,
-  //       },
-  //       {
-  //         path: 'videos',
-  //         component: VideosComponent,
-  //       },
-  //     ],
-  //   },
 ];
