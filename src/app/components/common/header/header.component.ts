@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +13,15 @@ import { SidenavService } from '../../../services/sidenav.service';
 })
 export class HeaderComponent {
 
-  constructor(public sidenavService: SidenavService) {}
+  sidenavService = inject(SidenavService);
+
+  darkMode = signal(false);
+
+  setDarkMode = effect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.toggle('dark', this.darkMode())
+    }
+  })
 
   toggleSidenav(): void {
     this.sidenavService.toggle();

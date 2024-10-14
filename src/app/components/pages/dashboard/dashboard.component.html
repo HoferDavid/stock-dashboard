@@ -1,6 +1,15 @@
-<p>dashboard works!</p>
+<section cdkDropListGroup>
+  <app-dashboard-header />
 
-<div class="dashboard-widgets">
-    <!-- <app-widget></app-widget> -->
-</div>
-
+  <div #dashboard class="dashboard-widgets">
+    @for (widget of store.addedWidgets(); track widget.id) {
+    <app-widget
+      cdkDropList
+      [data]="widget"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="widget.id"
+    />
+    }
+    <div cdkDropList (cdkDropListDropped)="drop($event)"></div>
+  </div>
+</section>

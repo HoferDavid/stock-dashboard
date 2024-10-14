@@ -1,13 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
 :host {
   display: block;
   border-radius: 1rem;
 }
 
 .container {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 2rem;
-    border-radius: inherit;
-    overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.label {
+  height: 1rem;
+  cursor: move;
+}
+
+.settings-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }

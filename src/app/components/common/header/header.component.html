@@ -1,7 +1,14 @@
 <mat-toolbar class="mat-elevation-z3">
-    <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <h1>Stock Earnings Overview</h1>
-</mat-toolbar>
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Stock Earnings Dashboard</h1>
 
+  <button mat-icon-button (click)="darkMode.set(!darkMode())">
+    @if (darkMode()) {
+    <mat-icon>light_mode</mat-icon>
+    } @else {
+    <mat-icon>dark_mode</mat-icon>
+    }
+  </button>
+</mat-toolbar>

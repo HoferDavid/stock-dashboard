@@ -2,10 +2,10 @@
     <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
         <div class="sidenav-header">
             <img src="img/supermario.jpg" [style.width]="profilePicSize()" alt="Photo">
-            <div class="header-text" [class.hide-header-text]="isCollapsed()">
+            <!-- <div class="header-text" [class.hide-header-text]="isCollapsed()">
                 <h2>Marioland</h2>
                 <p>Super Mario</p>
-            </div>
+            </div> -->
         </div>
         <mat-nav-list>
             @for (item of menuItems(); track item.label; let i = $index) {

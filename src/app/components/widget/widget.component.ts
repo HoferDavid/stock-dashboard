@@ -1,44 +1,32 @@
-import { Component, input, OnInit } from '@angular/core';
-import { StockService } from '../../services/stock.service';
-import { Chart } from 'chart.js/auto';
+import { Component, input, signal } from '@angular/core';
+import { Widget } from '../../interfaces/dashboard';
+import { NgComponentOutlet } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { WidgetOptionsComponent } from './widget-options/widget-options.component';
+import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-widget',
   standalone: true,
-  imports: [],
+  imports: [
+    NgComponentOutlet,
+    MatButtonModule,
+    MatIconModule,
+    WidgetOptionsComponent,
+    MatIcon,
+    CdkDrag,
+    CdkDragPlaceholder,
+  ],
   templateUrl: './widget.component.html',
   styleUrl: './widget.component.scss',
+  host: {
+    '[style.grid-area]':
+      '"span " + (data().rows ?? 1) + "/ span " + (data().columns ?? 1)',
+  },
 })
-export class WidgetComponent implements OnInit {
-  chart: any;
+export class WidgetComponent {
+  data = input.required<Widget>();
 
-  constructor(private stockService: StockService) {}
-
-  ngOnInit() {
-    this.loadStockData('AAPL'); // Change
-  }
-
-  loadStockData(ticker: string) {
-    this.stockService.getStockData(ticker).subscribe((data) => {
-      const revenue = this.stockService.extractRevenue(data, ticker);
-      this.createChart(revenue);
-    });
-  }
-
-  createChart(revenue: number) {
-    this.chart = new Chart('canvas', {
-      type: 'line',
-      data: {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'], // Example quarters
-        datasets: [
-          {
-            label: 'Umsatz',
-            data: [revenue], // Add more data sets
-            borderColor: '#3cba9f',
-            fill: false,
-          },
-        ],
-      },
-    });
-  }
+  showOptions = signal(false);
 }
