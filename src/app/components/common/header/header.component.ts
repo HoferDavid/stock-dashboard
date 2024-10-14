@@ -15,11 +15,11 @@ export class HeaderComponent {
 
   sidenavService = inject(SidenavService);
 
-  darkMode = signal(false);
+  lightMode = signal(false);
 
   setDarkMode = effect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.classList.toggle('dark', this.darkMode())
+      document.documentElement.classList.toggle('light', this.lightMode())
     }
   })
 

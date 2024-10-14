@@ -39,10 +39,14 @@ export type MenuItem = {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-
   sidenavService = inject(SidenavService);
 
   menuItems = signal<MenuItem[]>([
+    {
+      icon: 'dashboard',
+      label: 'Overview',
+      route: 'overview',
+    },
     {
       icon: 'dashboard',
       label: 'Dashboard',

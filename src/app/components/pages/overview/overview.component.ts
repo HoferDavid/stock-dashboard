@@ -1,0 +1,69 @@
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  viewChild,
+} from '@angular/core';
+import { WidgetComponent } from '../../widget/widget.component';
+import { DashboardService } from '../../../services/dashboard.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { wrapGrid } from 'animate-css-grid';
+import {
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+} from '@angular/cdk/drag-drop';
+import { OverviewHeaderComponent } from "./overview-header/overview-header.component";
+
+@Component({
+  selector: 'app-overview',
+  standalone: true,
+  imports: [
+    WidgetComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    CdkDropList,
+    CdkDropListGroup,
+    OverviewHeaderComponent
+],
+  providers: [DashboardService],
+  templateUrl: './overview.component.html',
+  styleUrl: './overview.component.scss',
+})
+export class OverviewComponent implements OnInit {
+  store = inject(DashboardService);
+
+  dashboard = viewChild.required<ElementRef>('dashboard');
+
+  clearAnimations = () => {};
+
+  ngOnInit(): void {
+    const { unwrapGrid } = wrapGrid(this.dashboard().nativeElement, {
+      duration: 300,
+    });
+    this.clearAnimations = unwrapGrid;
+  }
+
+  ngOnDestroy(): void {
+    this.clearAnimations();
+  }
+
+  drop(event: CdkDragDrop<number, any>) {
+    const {
+      previousContainer,
+      container,
+      item: { data },
+    } = event;
+
+    if (data) {
+      this.store.insertWidgetAtPosition(data, container.data);
+      return;
+    }
+
+    this.store.updateWidgetPosition(previousContainer.data, container.data);
+  }
+}
