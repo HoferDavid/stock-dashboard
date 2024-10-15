@@ -48,12 +48,8 @@ mat-sidenav-container {
 }
 
 .selected-menu-item {
-  border-left-color: #cc0000;
+  border-left-color: var(--selected-menu-item-border-color);
 }
-
-// mat-sidenav {
-//   border: 1px solid;
-// }
 
 mat-sidenav,
 mat-sidenav-content {
@@ -66,8 +62,4 @@ mat-sidenav-content {
 
 
 
-// .mat-drawer-side {
-//     // border-right-color: var(--mat-sidenav-container-divider-color);
-//     border-right-width: 1px;
-//     border-right-style: solid;
-// }
+
