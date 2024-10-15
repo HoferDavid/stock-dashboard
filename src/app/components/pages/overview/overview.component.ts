@@ -27,6 +27,10 @@ import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
 export class OverviewComponent {
   overviewService = inject(OverviewService);
 
+  overview = viewChild.required<ElementRef>('overview');
+
+}
+
   // overview = viewChild.required<ElementRef>('overview');
 
   // clearAnimations = () => {};
@@ -56,4 +60,3 @@ export class OverviewComponent {
 
   //   this.store.updateWidgetPosition(previousContainer.data, container.data);
   // }
-}

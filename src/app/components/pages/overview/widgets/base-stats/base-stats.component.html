@@ -1,14 +1,16 @@
-<div class="overview-widgets">
-  @for (widget of overviewService.widgets; track widget.id) {
-  <div class="widget">
+<div class="base-stats-widgets">
+  <div class="widget mat-elevation-z3" 
+       [style.background-color]="data().backgroundColor ?? 'var(--sys-surface-bright)'" 
+       [style.color]="data().color ?? 'inherit'">
+
     <div class="widget-header">
-      <img src="/logos/{{ widget.logo }}" alt="" />
-      <p>{{ widget.ticker }}</p>
+      <img [src]="'/logos/' + data().logo" [alt]="data().ticker" />
+      <p>{{ data().ticker }}</p>
     </div>
 
     Revenue in <span>add date</span>
 
-    <div><span class="text-green">+502</span> in the last 28 days</div>
+    <div><span class="text-green">+502</span> in last quarter</div>
   </div>
-  }
 </div>
+

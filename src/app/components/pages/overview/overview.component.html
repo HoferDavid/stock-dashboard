@@ -1,3 +1,8 @@
 <app-overview-header />
 
-<app-base-stats/>
+
+<div class="dashboard-widgets">
+  @for (widget of overviewService.widgets; track widget.id) {
+  <app-base-stats [data]="widget" />
+  }
+</div>
