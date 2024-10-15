@@ -11,6 +11,10 @@ mat-sidenav-container {
   --mat-sidenav-container-background-color: var(--sys-surface-container-low);
 }
 
+mat-sidenav {
+  border-right: 1px solid var(--sys-outline);
+}
+
 .sidenav-header {
   padding-top: 1.5rem;
   text-align: center;
@@ -59,7 +63,3 @@ mat-sidenav-content {
 .indented {
   --mat-list-list-item-leading-icon-start-space: 3rem;
 }
-
-
-
-
