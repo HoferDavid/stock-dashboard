@@ -8,6 +8,7 @@
 
 mat-sidenav-container {
   height: calc(100dvh - 4rem);
+  --mat-sidenav-container-background-color: var(--sys-surface-container-low);
 }
 
 .sidenav-header {
@@ -37,7 +38,6 @@ mat-sidenav-container {
 }
 
 .hide-header-text {
-  // display: none;
   opacity: 0;
   height: 0px;
 }
@@ -51,9 +51,9 @@ mat-sidenav-container {
   border-left-color: #cc0000;
 }
 
-mat-sidenav {
-  border: 1px solid;
-}
+// mat-sidenav {
+//   border: 1px solid;
+// }
 
 mat-sidenav,
 mat-sidenav-content {
@@ -63,3 +63,11 @@ mat-sidenav-content {
 .indented {
   --mat-list-list-item-leading-icon-start-space: 3rem;
 }
+
+
+
+// .mat-drawer-side {
+//     // border-right-color: var(--mat-sidenav-container-divider-color);
+//     border-right-width: 1px;
+//     border-right-style: solid;
+// }

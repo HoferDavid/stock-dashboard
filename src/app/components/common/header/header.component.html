@@ -4,8 +4,8 @@
   </button>
   <h1>Stock Earnings Dashboard</h1>
 
-  <button mat-icon-button (click)="lightMode.set(!lightMode())">
-    @if (lightMode()) {
+  <button mat-icon-button (click)="toggleTheme()">
+    @if (lightMode) {
     <mat-icon>light_mode</mat-icon>
     } @else {
     <mat-icon>dark_mode</mat-icon>

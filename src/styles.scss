@@ -153,3 +153,28 @@ html {
   border-left: 5px solid var(--sys-outline);
   padding-left: 0.5rem;
 }
+
+
+
+// Am Ende der Datei hinzufügen oder bestehende Styles aktualisieren
+.mat-toolbar,
+.mat-sidenav {
+  background-color: var(--sys-surface-container-low);
+  color: var(--sys-on-surface);
+}
+
+.mat-sidenav-container {
+  height: calc(100vh - 64px); // 64px ist die Standard-Höhe der mat-toolbar
+}
+
+.mat-sidenav {
+  border-right: 1px solid var(--sys-outline);
+}
+
+// Elevation für Light-Modus
+.light {
+  .mat-toolbar,
+  .mat-sidenav {
+    @include mat.elevation(3);
+  }
+}
