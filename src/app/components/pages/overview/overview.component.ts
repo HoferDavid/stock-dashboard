@@ -1,9 +1,7 @@
-import { Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { wrapGrid } from 'animate-css-grid';
-import { CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { OverviewHeaderComponent } from "./overview-header/overview-header.component";
 import { OverviewService } from '../../../services/overview.service';
 import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
@@ -15,8 +13,6 @@ import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    CdkDropList,
-    CdkDropListGroup,
     OverviewHeaderComponent,
     BaseStatsComponent
 ],
