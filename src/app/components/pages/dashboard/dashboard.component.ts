@@ -5,7 +5,6 @@ import {
   OnInit,
   viewChild,
 } from '@angular/core';
-import { WidgetComponent } from '../../widget/widget.component';
 import { DashboardService } from '../../../services/dashboard.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +16,7 @@ import {
   CdkDropListGroup,
 } from '@angular/cdk/drag-drop';
 import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { WidgetComponent } from './widget/widget.component';
 
 @Component({
   selector: 'app-dashboard',
