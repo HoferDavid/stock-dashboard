@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { DashboardService } from '../../../../services/dashboard.service';
 import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
+import { DashboardService } from '../../../../../services/dashboard.service';
 
 @Component({
   selector: 'app-widgets-panel',
