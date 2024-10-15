@@ -35,6 +35,11 @@
     color: var(--sys-error);
   }
 
+  .size-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .move-forward-button {
     position: absolute;
     top: 50%;
