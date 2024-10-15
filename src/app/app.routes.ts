@@ -9,11 +9,11 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard',
+    redirectTo: 'overview',
   },
   {
     path: 'overview',
-    component: OverviewComponent, // change to overview
+    component: OverviewComponent,
   },
   {
     path: 'dashboard',

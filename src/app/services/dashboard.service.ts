@@ -54,7 +54,17 @@ export class DashboardService {
     },
   ]);
 
-  addedWidgets = signal<Widget[]>([]);
+  addedWidgets = signal<Widget[]>([
+    {
+      id: 1,
+      label: 'Subscribers',
+      content: SubscribersComponent,
+      rows: 1,
+      columns: 1,
+      backgroundColor: '#003f5c',
+      color: 'whitesmoke',
+    },
+  ]);
 
   widgetsToAdd = computed(() => {
     const addedIds = this.addedWidgets().map((w) => w.id);
@@ -105,13 +115,18 @@ export class DashboardService {
   }
 
   insertWidgetAtPosition(sourceWidgetId: number, destWidgetId: number) {
-    const widgetToAdd = this.widgetsToAdd().find((w) => w.id === sourceWidgetId);
+    const widgetToAdd = this.widgetsToAdd().find(
+      (w) => w.id === sourceWidgetId
+    );
     if (!widgetToAdd) {
       return;
     }
 
-    const indexOfDestWidget = this.addedWidgets().findIndex(w => w.id === destWidgetId);
-    const positionToAdd = indexOfDestWidget === -1 ? this.addedWidgets().length : indexOfDestWidget;
+    const indexOfDestWidget = this.addedWidgets().findIndex(
+      (w) => w.id === destWidgetId
+    );
+    const positionToAdd =
+      indexOfDestWidget === -1 ? this.addedWidgets().length : indexOfDestWidget;
 
     const newWidgets = [...this.addedWidgets()];
     newWidgets.splice(positionToAdd, 0, widgetToAdd);
