@@ -1,0 +1,14 @@
+{
+  "Apple": {
+    "sheetName": "AAPL",
+    "revenueRow": 5,
+    "netIncomeRow": 10,
+    "grossMarginRow": 15
+  },
+  "Tesla": {
+    "sheetName": "TSLA",
+    "revenueRow": 6,
+    "netIncomeRow": 11,
+    "grossMarginRow": 16
+  }
+}
