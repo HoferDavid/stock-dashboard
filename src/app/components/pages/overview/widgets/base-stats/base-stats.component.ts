@@ -11,9 +11,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './base-stats.component.scss'
 })
 export class BaseStatsComponent {
-  // overviewService = inject(OverviewService);
-
-  // data = input.required<OverviewWidget>();
 
   @Input() data!: OverviewWidget;
 }
