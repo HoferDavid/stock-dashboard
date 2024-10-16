@@ -2,8 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
-import { OverviewService } from '../../../../services/overview.service';
+import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-overview-header',
@@ -19,13 +18,4 @@ import { OverviewService } from '../../../../services/overview.service';
   styleUrl: './overview-header.component.scss',
 })
 export class OverviewHeaderComponent {
-  overviewService = inject(OverviewService);
-
-  // widgetsOpen = signal(false);
-
-  // widgetPutBack(event: CdkDragDrop<number, any>) {
-  //   const { previousContainer } = event;
-
-  //   this.store.removeWidget(previousContainer.data);
-  // }
 }

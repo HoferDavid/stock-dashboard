@@ -1,8 +1,8 @@
 <app-overview-header />
 
 
-<div class="dashboard-widgets">
-  @for (widget of overviewService.widgets; track widget.id) {
-  <app-base-stats [data]="widget" />
-  }
+<div *ngIf="stocks.length > 0" class="dashboard-widgets">
+  <div *ngFor="let stock of stocks; track stock">
+    <app-base-stats [data]="stock"></app-base-stats>
+  </div>
 </div>

@@ -8,7 +8,6 @@ import { environment } from './../../environments/environment';
   providedIn: 'root',
 })
 export class StockDataService {
-  // private apiKey = 'AIzaSyBmqC_yDEf1pISefZEUyoEkaJ_t7KTl0vU';
   private apiKey = environment.apiKey;
   private spreadsheetId = '1m3h9Xce3SRMaq20li2Qg4HuSZowwxQSd9FkQmeuI7Dw';
 

@@ -1,17 +1,19 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { OverviewService } from '../../../../../services/overview.service';
 import { OverviewWidget } from '../../../../../interfaces/overview';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-base-stats',
   standalone: true,
-  imports: [MatIcon],
+  imports: [MatIcon, CommonModule],
   templateUrl: './base-stats.component.html',
   styleUrl: './base-stats.component.scss'
 })
 export class BaseStatsComponent {
-  overviewService = inject(OverviewService);
+  // overviewService = inject(OverviewService);
 
-  data = input.required<OverviewWidget>();
+  // data = input.required<OverviewWidget>();
+
+  @Input() data!: OverviewWidget;
 }

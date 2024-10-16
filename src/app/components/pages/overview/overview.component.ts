@@ -1,10 +1,12 @@
-import { Component, ElementRef, inject, viewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { OverviewHeaderComponent } from "./overview-header/overview-header.component";
-import { OverviewService } from '../../../services/overview.service';
 import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
+import { StockDataService } from '../../../services/stockdata.service';
+import stockMapping from '../../../assets/stock-mapping.json';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-overview',
@@ -14,45 +16,41 @@ import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
     MatIconModule,
     MatMenuModule,
     OverviewHeaderComponent,
-    BaseStatsComponent
-],
-  providers: [OverviewService],
+    BaseStatsComponent, CommonModule
+  ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
 })
-export class OverviewComponent {
-  overviewService = inject(OverviewService);
+export class OverviewComponent implements OnInit {
+  stocks: any[] = [];
+  stockDataService = inject(StockDataService);
 
-  overview = viewChild.required<ElementRef>('overview');
+  ngOnInit(): void {
+    this.loadStocks();
+  }
 
+  loadStocks(): void {
+    for (const [stockName, stockDetails] of Object.entries(stockMapping)) {
+      this.stockDataService
+        .getStockData(stockDetails.sheetName)
+        .subscribe((data) => {
+          const stock = {
+            name: stockName,
+            logo: `/logos/${stockName.toLowerCase()}.svg`,
+            data: {
+              revenue: this.extractData(data, stockDetails.revenueRow),
+              netIncome: this.extractData(data, stockDetails.netIncomeRow),
+              grossMargin: this.extractData(data, stockDetails.grossMarginRow),
+            },
+          };
+          this.stocks.push(stock);
+        });
+    }
+  }
+
+  extractData(sheetData: any, row: number): number[] {
+    return sheetData.values[row - 1]
+      .slice(-12)
+      .map((value: any) => parseFloat(value));
+  }
 }
-
-  // overview = viewChild.required<ElementRef>('overview');
-
-  // clearAnimations = () => {};
-
-  // ngOnInit(): void {
-  //   const { unwrapGrid } = wrapGrid(this.overview().nativeElement, {
-  //     duration: 300,
-  //   });
-  //   this.clearAnimations = unwrapGrid;
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.clearAnimations();
-  // }
-
-  // drop(event: CdkDragDrop<number, any>) {
-  //   const {
-  //     previousContainer,
-  //     container,
-  //     item: { data },
-  //   } = event;
-
-  //   if (data) {
-  //     this.store.insertWidgetAtPosition(data, container.data);
-  //     return;
-  //   }
-
-  //   this.store.updateWidgetPosition(previousContainer.data, container.data);
-  // }
