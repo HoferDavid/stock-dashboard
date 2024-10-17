@@ -31,26 +31,23 @@ export class OverviewComponent implements OnInit {
 
   loadStocks(): void {
     for (const [stockName, stockDetails] of Object.entries(stockMapping)) {
+      const sheetName = `$${stockDetails.ticker}`;
       this.stockDataService
-        .getStockData(stockDetails.sheetName)
-        .subscribe((data) => {
+        .getStockOverviewData(sheetName, stockDetails.revenueRow, stockDetails.quarterRow)
+        .subscribe((data: any) => {
+          const lastRevenue = data.valueRanges[0].values[0].slice(-1)[0]; // Umsatz aus dem ersten Range
+          const lastQuarter = data.valueRanges[1].values[0].slice(-1)[0]; // Quartal aus dem zweiten Range
+  
           const stock = {
-            name: stockName,
+            name: stockDetails.name,
+            ticker: stockDetails.ticker,
             logo: `/logos/${stockName.toLowerCase()}.svg`,
-            data: {
-              revenue: this.extractData(data, stockDetails.revenueRow),
-              netIncome: this.extractData(data, stockDetails.netIncomeRow),
-              grossMargin: this.extractData(data, stockDetails.grossMarginRow),
-            },
+            lastRevenue: lastRevenue,
+            lastQuarter: lastQuarter
           };
+  
           this.stocks.push(stock);
         });
     }
-  }
-
-  extractData(sheetData: any, row: number): number[] {
-    return sheetData.values[row - 1]
-      .slice(-12)
-      .map((value: any) => parseFloat(value));
   }
 }

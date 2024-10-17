@@ -1,7 +1,7 @@
 <app-overview-header />
 
 <div class="dashboard-widgets">
-  @for (stock of stocks; track stocks) {
+  @for (stock of stocks; track stock) {
   <app-base-stats [data]="stock"></app-base-stats>
   }
 </div>

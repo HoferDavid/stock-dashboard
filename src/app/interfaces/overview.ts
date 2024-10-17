@@ -1,12 +1,7 @@
 export interface OverviewWidget {
-  id?: number;
+  name: string;
   ticker: string;
   logo: string;
-  backgroundColor?: string;
-  color?: string;
-  data: {
-    revenue: number[];
-    netIncome: number[];
-    grossMargin: number[];
-  };
+  lastRevenue?: number;
+  lastQuarter?: string;
 }

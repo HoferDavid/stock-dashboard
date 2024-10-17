@@ -1,16 +1,20 @@
 {
   "Apple": {
-    "sheetName": "$AAPL",
+    "ticker": "AAPL",
+    "name": "Apple",
     "logo": "apple.svg",
-    "revenueRow": 5,
-    "netIncomeRow": 10,
-    "grossMarginRow": 15
+    "quarterRow": 3,
+    "revenueRow": 9,
+    "netIncomeRow": 36,
+    "grossMarginRow": 23
   },
   "Tesla": {
-    "sheetName": "$TSLA",
+    "ticker": "TSLA",
+    "name": "Tesla",
     "logo": "tesla.svg",
-    "revenueRow": 6,
-    "netIncomeRow": 11,
-    "grossMarginRow": 16
+    "quarterRow": 3,
+    "revenueRow": 13,
+    "netIncomeRow": 44,
+    "grossMarginRow": 26
   }
 }

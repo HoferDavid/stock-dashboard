@@ -13,6 +13,15 @@ export class StockDataService {
 
   constructor(private http: HttpClient) {}
 
+  // Methode, um nur den letzten Revenue und das letzte Quartal zu laden
+  getStockOverviewData(sheetName: string, revenueRow: number, quarterRow: number): Observable<any> {
+    const revenueRange = `${sheetName}!A${revenueRow}:Z${revenueRow}`;
+    const quarterRange = `${sheetName}!A${quarterRow}:Z${quarterRow}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values:batchGet?ranges=${revenueRange}&ranges=${quarterRange}&key=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
+  // Methode, um detaillierte Daten zu laden, wenn ein Widget angeklickt wird
   getStockData(sheetName: string): Observable<any> {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/${sheetName}!A:Z?key=${this.apiKey}`;
     return this.http.get(url);
