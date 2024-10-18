@@ -44,3 +44,6 @@ Thumbs.db
 
 # added by dh
 /src/environments
+/backend/node_modules
+/backend/serviceAccountKey.json
+/backend/.env
