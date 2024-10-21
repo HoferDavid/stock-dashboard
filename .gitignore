@@ -47,3 +47,7 @@ Thumbs.db
 /backend/node_modules
 /backend/serviceAccountKey.json
 /backend/.env
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
