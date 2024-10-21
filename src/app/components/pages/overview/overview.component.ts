@@ -4,8 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { OverviewHeaderComponent } from "./overview-header/overview-header.component";
 import { BaseStatsComponent } from "./widgets/base-stats/base-stats.component";
-import { StockDataService } from '../../../services/stockdata.service';
 import { CommonModule } from '@angular/common';
+import { FirestoreService } from '../../../services/firestore.service';
 
 @Component({
   selector: 'app-overview',
@@ -22,27 +22,17 @@ import { CommonModule } from '@angular/common';
 })
 export class OverviewComponent implements OnInit {
   stocks: any[] = [];
-  stockDataService = inject(StockDataService);
+  firestoreService = inject(FirestoreService);
+
 
   ngOnInit(): void {
     this.loadStocks();
   }
 
   loadStocks(): void {
-    const stockTickers = ["AAPL", "TSLA"];
-
-    stockTickers.forEach(ticker => {
-      this.stockDataService.getStockOverviewData(ticker).subscribe((data: any) => {
-        const stock = {
-          name: data.name,
-          ticker: data.ticker,
-          logo: `/logos/${ticker.toLowerCase()}.svg`,
-          lastRevenue: data.revenue,
-          lastQuarter: data.quarter
-        };
-
-        this.stocks.push(stock);
-      });
+    this.firestoreService.getStocks().subscribe((data) => {
+      console.log("Data from Firestore: ", data);
+      this.stocks = data;
     });
   }
 }
