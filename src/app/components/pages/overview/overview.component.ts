@@ -32,7 +32,18 @@ export class OverviewComponent implements OnInit {
   loadStocks(): void {
     this.firestoreService.getStocks().subscribe((data) => {
       console.log("Data from Firestore: ", data);
-      this.stocks = data;
+
+      this.stocks = data.map((stock: any) => {
+        return {
+          name: stock.name,
+          ticker: stock.id, // Use Firestore-Document-ID as Ticker (e.g. "AAPL")
+          logo: `/logos/${stock.name.toLowerCase()}.svg`,
+          lastRevenue: stock.revenue ? stock.revenue[stock.revenue.length - 1] : 'N/A', // Last Revenue
+          lastQuarter: stock.quarter ? stock.quarter[stock.quarter.length - 1] : 'N/A' // Last Quarter
+        };
+      });
+
+      console.log("Transformed Data: ", this.stocks);
     });
   }
 }

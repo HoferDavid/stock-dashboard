@@ -24,8 +24,8 @@ const apiKey = process.env.API_KEY;
 // Function, to load Data from Google Spreadsheet
 async function getStockOverviewData(sheetName, revenueRow, quarterRow) {
     
-  const revenueRange = `${sheetName}!A${revenueRow}:Z${revenueRow}`;
-  const quarterRange = `${sheetName}!A${quarterRow}:Z${quarterRow}`;
+  const revenueRange = `${sheetName}!A${revenueRow}:AZ${revenueRow}`;
+  const quarterRange = `${sheetName}!A${quarterRow}:AZ${quarterRow}`;
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${revenueRange}&ranges=${quarterRange}&key=${apiKey}`;
   
   try {
@@ -49,6 +49,7 @@ async function syncSpreadsheetToFirestore() {
       const quarterRow = stock.quarterRow;
 
       const stockData = await getStockOverviewData(sheetName, revenueRow, quarterRow);
+      console.log(`Received data for ${stockName}:`, stockData);
 
       if (stockData) {
         // Save data in Firestore
