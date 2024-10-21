@@ -4,6 +4,7 @@ const admin = require('firebase-admin');
 const axios = require('axios'); // For HTTP-Requests
 const cron = require('node-cron');
 const serviceAccount = require('./serviceAccountKey.json');
+const stocks = require('./stocks.json');
 
 require('dotenv').config();
 
@@ -35,32 +36,43 @@ async function getStockOverviewData(sheetName, revenueRow, quarterRow) {
   }
 }
 
-// Load Google Spreadsheet-Data in Firestore
+// Load Google Spreadsheet Data into Firestore for all stocks
 async function syncSpreadsheetToFirestore() {
   try {
-    console.log('Synchronisierung gestartet...');
+    console.log('Starting synchronization...');
 
-    // Example for a Stock
-    const sheetName = '$TSLA';
-    const revenueRow = 13;
-    const quarterRow = 3;
+    // Loop through each stock in stocks.json
+    for (const stockName in stocks) {
+      const stock = stocks[stockName];
+      const sheetName = `$${stock.ticker}`; // Prefix the ticker with '$'
+      const revenueRow = stock.revenueRow;
+      const quarterRow = stock.quarterRow;
 
-    const stockData = await getStockOverviewData(sheetName, revenueRow, quarterRow);
+      const stockData = await getStockOverviewData(sheetName, revenueRow, quarterRow);
+
+      if (stockData) {
+        // Save data in Firestore
+        const revenueData = stockData[0].values[0];
+        const quarterData = stockData[1].values[0];
+
+        const stockRef = firestore.collection('stocks').doc(stock.ticker);
+        await stockRef.set({
+          name: stockName,
+          ticker: stock.ticker,
+          revenue: revenueData,
+          quarter: quarterData
+        });
+        
+        console.log(`Data for ${stockName} successfully saved to Firestore.`);
+      } else {
+        console.error(`Failed to fetch data for ${stockName}`);
+      }
+    }
     
-    // Save Data in Firestore
-    const revenueData = stockData[0].values[0];
-    const quarterData = stockData[1].values[0];
-    
-    const stockRef = firestore.collection('stocks').doc(sheetName);
-    await stockRef.set({
-      revenue: revenueData,
-      quarter: quarterData
-    });
-    
-    console.log('Daten erfolgreich in Firestore gespeichert.');
-    
+    console.log('Synchronization complete.');
+
   } catch (error) {
-    console.error('Fehler beim Laden der Daten:', error);
+    console.error('Error loading data:', error);
   }
 }
 

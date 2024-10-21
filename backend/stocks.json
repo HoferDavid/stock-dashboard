@@ -1,0 +1,20 @@
+{
+  "Apple": {
+    "ticker": "AAPL",
+    "name": "Apple",
+    "logo": "apple.svg",
+    "quarterRow": 3,
+    "revenueRow": 9,
+    "netIncomeRow": 36,
+    "grossMarginRow": 23
+  },
+  "Tesla": {
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "logo": "tesla.svg",
+    "quarterRow": 3,
+    "revenueRow": 13,
+    "netIncomeRow": 44,
+    "grossMarginRow": 26
+  }
+}
