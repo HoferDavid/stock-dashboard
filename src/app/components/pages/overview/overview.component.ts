@@ -37,7 +37,7 @@ export class OverviewComponent implements OnInit {
         return {
           name: stock.name,
           ticker: stock.id, // Use Firestore-Document-ID as Ticker (e.g. "AAPL")
-          logo: `/logos/${stock.name.toLowerCase()}.svg`,
+          logo: `/logos/${stock.name.toLowerCase()}.png`,
           lastRevenue: stock.revenue ? stock.revenue[stock.revenue.length - 1] : 'N/A', // Last Revenue
           lastQuarter: stock.quarter ? stock.quarter[stock.quarter.length - 1] : 'N/A' // Last Quarter
         };

@@ -9,10 +9,10 @@
     </div>
 
     <div class="widget-body">
-      <p>Revenue {{ data.lastQuarter | quarterFormat }}</p>
+      <p class="revenueText">Revenue {{ data.lastQuarter | quarterFormat }}</p>
       <p class="revenueNumber">{{ data.lastRevenue ? (data.lastRevenue | billionFormat) : '-' }}</p>
+      <p class="infoText">in Bill. USD</p>
     </div>
-    <p class="infoText">in Bill. USD</p>
   </div>
 </div>
 

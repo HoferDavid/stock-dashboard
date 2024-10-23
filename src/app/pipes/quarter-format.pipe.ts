@@ -2,10 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'quarterFormat',
-  standalone: true
+  standalone: true,
 })
 export class QuarterFormatPipe implements PipeTransform {
-
   transform(value: string | undefined): string {
     if (!value) {
       return 'undefined';
@@ -25,5 +24,4 @@ export class QuarterFormatPipe implements PipeTransform {
 
     return value;
   }
-
 }
