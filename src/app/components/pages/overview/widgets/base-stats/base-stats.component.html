@@ -3,13 +3,19 @@
 
     <div class="widget-header">
       <img [src]="data.logo" [alt]="data.ticker + ' logo'" />
-      <p>{{ data.ticker }}</p>
-      <p>{{ data.name }}</p>
+      <div>
+        <p class="name">{{ data.name }}</p>
+      </div>
     </div>
 
     <div class="widget-body">
-      <p>Last Revenue: {{ data.lastRevenue }}</p>
-      <p>Last Quarter: {{ data.lastQuarter }}</p>
+      <p>Revenue {{ data.lastQuarter }}</p>
+      <p class="revenueNumber">{{ data.lastRevenue ? (data.lastRevenue | billionFormat) : '-' }}</p>
     </div>
+    <p class="infoText">in Bill. USD</p>
   </div>
 </div>
+
+
+
+<!-- <p class="ticker">{{ data.ticker }}</p> -->

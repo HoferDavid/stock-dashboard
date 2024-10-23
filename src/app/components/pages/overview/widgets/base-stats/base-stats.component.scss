@@ -22,10 +22,16 @@
   align-items: center;
   gap: 1rem;
 
-  p {
+  .name {
+    font-size: 1.25rem;
     margin: 0;
-    font-size: 1.5rem;
   }
+
+  .ticker {
+    margin: 0;
+    // font-size: 0.75rem;
+  }
+
 
   img {
     height: 40px;
@@ -38,4 +44,15 @@
     align-items: center;
     border: 1px solid black;
   }
+}
+
+.widget-body {
+  .revenueNumber {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
+
+.infoText {
+  font-size: 0.75rem;
 }
